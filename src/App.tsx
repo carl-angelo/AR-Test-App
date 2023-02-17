@@ -1,12 +1,30 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import './App.scss';
-import { store } from './core/store';
+import loadable from '@loadable/component';
+import { Route, BrowserRouter, useRoutes } from 'react-router-dom';
+
+const Login = loadable(() => import('./pages/Login'));
+const Home = loadable(() => import('./pages/Home'));
+// const ErrorPage = loadable(() => import('./pages/Error'));
+
+const AppRoute = () => {
+  let routes = useRoutes([
+    {
+      path: '/', element: <Home />
+    },
+    {
+      path: '/login', element: <Login />
+    }
+  ]);
+  return routes;
+}
 
 const App: React.FC<EmptyObject> = () => {
-  return <Provider store={store}>
-    My App
-  </Provider>;
+  return (
+    <BrowserRouter>
+      <AppRoute />
+    </BrowserRouter> 
+  );
 };
 
 export default App;
