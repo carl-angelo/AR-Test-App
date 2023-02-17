@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.scss';
 import loadable from '@loadable/component';
-import { Route, BrowserRouter, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './core/store';
 
 const Login = loadable(() => import('./pages/Login'));
 const Home = loadable(() => import('./pages/Home'));
@@ -21,9 +23,11 @@ const AppRoute = () => {
 
 const App: React.FC<EmptyObject> = () => {
   return (
+   <Provider store={store}>
     <BrowserRouter>
       <AppRoute />
     </BrowserRouter> 
+   </Provider>
   );
 };
 

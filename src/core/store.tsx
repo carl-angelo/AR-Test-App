@@ -1,4 +1,6 @@
 import { configureStore, createImmutableStateInvariantMiddleware, createListenerMiddleware } from '@reduxjs/toolkit';
+import { loginApi } from '../services/login';
+import { loggedInReducer } from '../slices/login';
 
 export const getStore = (initialState = {}) => {
   const listenerMiddleware = createListenerMiddleware();
@@ -10,6 +12,8 @@ export const getStore = (initialState = {}) => {
   const store = configureStore({
     preloadedState: initialState,
     reducer: {
+      loggedInUser: loggedInReducer,
+      [loginApi.reducerPath]: loginApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
@@ -19,6 +23,7 @@ export const getStore = (initialState = {}) => {
         .prepend(listenerMiddleware.middleware)
         .concat(
           immutableInvariantMiddleware,
+          loginApi.middleware
         )
   });
 
