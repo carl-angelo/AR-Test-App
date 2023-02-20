@@ -1,7 +1,5 @@
-export interface GlobalStateInterface {
-  loggedInUser: LoggedInUser | null;
-};
+import { LoggedInUserDetail } from "./login-interface";
 
-interface LoggedInUser {
-  username: string;
+export interface GlobalStateInterface {
+  auth: LoggedInUserDetail | null;
 }

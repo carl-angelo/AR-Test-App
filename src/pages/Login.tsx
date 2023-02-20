@@ -1,14 +1,17 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { useLoginUserMutation } from '../services/login';
+import { useFetchTokenMutation, useLoginUserMutation, useRefreshTokenMutation } from '../services/login';
+import { appId, appSecret } from '../constants';
 
 const Login: React.FC<EmptyObject> = () => {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const isLoggedIn = useAuth();
-  const [loginUser] = useLoginUserMutation();
+  const auth = useAuth();
+  const [loginUser, { data: loginResponse, isSuccess: isLoginApiSuccess }] = useLoginUserMutation();
+  const [fetchToken, { data: fetchTokenResponse, isSuccess: isFetchTokenSuccess }] = useFetchTokenMutation();
+  const [refreshToken, { isSuccess: isRefreshTokenSuccess }] = useRefreshTokenMutation();
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -18,10 +21,38 @@ const Login: React.FC<EmptyObject> = () => {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (auth && auth.user && auth.userToken) {
+      refreshToken({
+        username: auth.user,
+        refreshToken: auth.userToken,
+        appId,
+        appSecret
+      })
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isRefreshTokenSuccess && auth.user && auth.userToken) {
       navigate('/');
     }
-  }, [isLoggedIn]);
+  }, [isRefreshTokenSuccess]);
+
+  useEffect(() => {
+    if (isFetchTokenSuccess && fetchTokenResponse) {
+      navigate('/');
+    }
+  }, [fetchTokenResponse, isFetchTokenSuccess]);
+
+  useEffect(() => {
+    if (isLoginApiSuccess && loginResponse?.authCode) {
+      console.log('isLoginApiSuccess', isLoginApiSuccess);
+      fetchToken({
+        authCode: loginResponse.authCode,
+        appId,
+        appSecret
+      });
+    }
+  }, [isLoginApiSuccess, loginResponse]);
 
   return (
     <div>
