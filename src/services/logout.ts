@@ -16,6 +16,9 @@ export const logoutApi = createApi({
           refreshToken
         })
       }),
+      extraOptions: {
+        auth: true
+      },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

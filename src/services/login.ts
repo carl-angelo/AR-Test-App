@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { FetchTokenRequestInterface, LoggedInUserDetail, LoginRequestInterface, LoginResponseInterface, RefreshTokenRequestInterface } from '../interfaces/login-interface';
 import { baseApiQuery } from './baseApiQuery';
-import { appId, authTokenKey, authUser } from '../constants';
+import { appId, authAccess, authTokenKey, authUser } from '../constants';
 import { setAuth } from '../slices/auth';
 
 export const loginApi = createApi({
@@ -44,6 +44,7 @@ export const loginApi = createApi({
           const { data } = await queryFulfilled;
           localStorage.setItem(authTokenKey, data.refreshToken);
           localStorage.setItem(authUser, data.username);
+          localStorage.setItem(authAccess, data.accessToken);
           dispatch(setAuth(data));
         } catch(e) {
           console.error('ERROR LOGIN', e);
@@ -66,6 +67,7 @@ export const loginApi = createApi({
           const { data } = await queryFulfilled;
           localStorage.setItem(authTokenKey, data.refreshToken);
           localStorage.setItem(authUser, data.username);
+          localStorage.setItem(authAccess, data.accessToken);
           dispatch(setAuth(data));
         } catch(e) {
           console.error('ERROR LOGIN', e);
