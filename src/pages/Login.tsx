@@ -22,7 +22,7 @@ const Login: React.FC<EmptyObject> = () => {
   };
 
   useEffect(() => {
-    if (auth && auth.user && auth.userToken) {
+    if (auth && auth.user && auth.userToken && appId && appSecret) {
       refreshToken({
         username: auth.user,
         refreshToken: auth.userToken,
@@ -45,7 +45,7 @@ const Login: React.FC<EmptyObject> = () => {
   }, [fetchTokenResponse, isFetchTokenSuccess]);
 
   useEffect(() => {
-    if (isLoginApiSuccess && loginResponse?.authCode) {
+    if (isLoginApiSuccess && loginResponse?.authCode && appId && appSecret) {
       console.log('isLoginApiSuccess', isLoginApiSuccess);
       fetchToken({
         authCode: loginResponse.authCode,
