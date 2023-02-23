@@ -4,7 +4,7 @@ import { getAccessToken } from '../hooks/useAuth';
 import { authAccess, authTokenKey, authUser } from '../constants';
 import { setAuth, setLogoutUser } from '../slices/auth';
 import { LoggedInUserDetail } from '../interfaces/login-interface';
-
+import { useNavigate } from 'react-router-dom';
 
 export const baseApiQuery: BaseQueryFn<
   string | FetchArgs,
@@ -33,20 +33,20 @@ FetchBaseQueryError
 > = async (args, api, extraOptions) => {
 let result = await baseApiQuery(args, api, extraOptions)
 if (result.error && result.error.status === 401) {
-  // try to get a new token
-  const { data } = await baseApiQuery(`${baseAPI}users/refresh-token`, api, extraOptions)
+
+  const { data } = await baseApiQuery(`${baseAPI}users/refresh-token`, api, extraOptions);
+
   if (data) {
-    // store the new token
-    // api.dispatch(rawBaseQuery(refreshResult.data))
     const token = data as LoggedInUserDetail;
     localStorage.setItem(authTokenKey, token?.refreshToken);
     localStorage.setItem(authUser, token?.username);
     localStorage.setItem(authAccess, token.accessToken);
     api.dispatch(setAuth(token));
-    // retry the initial query
-    result = await baseApiQuery(args, api, extraOptions)
+
+    result = await baseApiQuery(args, api, extraOptions);
   } else {
-    api.dispatch(setLogoutUser())
+    api.dispatch(setLogoutUser());
+    window.location.href = '/login';
   }
 }
 return result

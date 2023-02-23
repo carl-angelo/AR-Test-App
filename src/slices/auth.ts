@@ -10,7 +10,7 @@ export const AuthSlice = createSlice({
     setAuth: (state: GlobalStateInterface, action: PayloadAction<LoggedInUserDetail>) => {
       state.auth = { ...action.payload }
     },
-    setLogoutUser: (state) => {
+    setLogoutUser: (state: GlobalStateInterface) => {
       state.auth = null;
     },
   }
