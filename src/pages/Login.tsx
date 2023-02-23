@@ -1,19 +1,19 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { useState, ChangeEvent, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { useFetchTokenMutation, useLoginUserMutation, useRefreshTokenMutation } from '../services/login';
+import { useFetchTokenMutation, useLoginUserMutation } from '../services/login';
 import { appId, appSecret } from '../constants';
+import Loading from '../components/Loading';
 
 const Login: React.FC<EmptyObject> = () => {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const auth = useAuth();
-  const [loginUser, { data: loginResponse, isSuccess: isLoginApiSuccess }] = useLoginUserMutation();
-  const [fetchToken, { data: fetchTokenResponse, isSuccess: isFetchTokenSuccess }] = useFetchTokenMutation();
-  const [refreshToken, { isSuccess: isRefreshTokenSuccess }] = useRefreshTokenMutation();
+  const [loginUser, { data: loginResponse, isSuccess: isLoginApiSuccess, isLoading: isLoginMutationLoading }] = useLoginUserMutation();
+  const [fetchToken, { data: fetchTokenResponse, isSuccess: isFetchTokenSuccess, isLoading: isFetchTokenLoading }] = useFetchTokenMutation();
   const navigate = useNavigate();
-  const isUserLoggedIn = auth.user && auth.userToken && auth.userAccess;
+  const isLoading = isLoginMutationLoading || isFetchTokenLoading;
+  
 
   const handleLogin = () => {
     loginUser({
@@ -21,22 +21,20 @@ const Login: React.FC<EmptyObject> = () => {
     })
   };
 
-  useEffect(() => {
-    if (auth && auth.user && auth.userToken && appId && appSecret) {
-      refreshToken({
-        username: auth.user,
-        refreshToken: auth.userToken,
+  const handleFetchToken = useCallback(() => {
+    if (isLoginApiSuccess && loginResponse?.authCode && appId && appSecret) {
+      console.log('handleFetchToken');
+      fetchToken({
+        authCode: loginResponse.authCode,
         appId,
         appSecret
-      })
+      });
     }
-  }, []);
+  }, [isLoginApiSuccess, loginResponse, appId, appSecret]);
 
   useEffect(() => {
-    if (isRefreshTokenSuccess && isUserLoggedIn) {
-      navigate('/');
-    }
-  }, [isRefreshTokenSuccess]);
+    handleFetchToken();
+  }, [isLoginApiSuccess, loginResponse]);
 
   useEffect(() => {
     if (isFetchTokenSuccess && fetchTokenResponse) {
@@ -44,34 +42,26 @@ const Login: React.FC<EmptyObject> = () => {
     }
   }, [fetchTokenResponse, isFetchTokenSuccess]);
 
-  useEffect(() => {
-    if (isLoginApiSuccess && loginResponse?.authCode && appId && appSecret) {
-      console.log('isLoginApiSuccess', isLoginApiSuccess);
-      fetchToken({
-        authCode: loginResponse.authCode,
-        appId,
-        appSecret
-      });
-    }
-  }, [isLoginApiSuccess, loginResponse]);
-
   return (
-    <div className="login-container">
-      <div className="login-wrapper">
-        <h2> Login </h2>
-        <div className="fieldset flex-col">
-          <label htmlFor="username"> Username </label>
-          <input type="text" name="username" id="username" onChange={(event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value)} />
-        </div>
-        <div className="fieldset flex-col">
-          <label htmlFor="password"> Password </label>
-          <input type="password" name="password" id="password" onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
-        </div>
-        <div className="fieldset">
-          <button type="submit" name="submit" onClick={handleLogin}> Login </button>
+    <>
+      <Loading loading={isLoading} />
+      <div className="login-container">
+        <div className="login-wrapper">
+          <h2> Login </h2>
+          <div className="fieldset flex-col">
+            <label htmlFor="username"> Username </label>
+            <input type="text" name="username" id="username" onChange={(event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value)} />
+          </div>
+          <div className="fieldset flex-col">
+            <label htmlFor="password"> Password </label>
+            <input type="password" name="password" id="password" onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
+          </div>
+          <div className="fieldset">
+            <button type="submit" name="submit" className="button button-primary" onClick={handleLogin}> Login </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

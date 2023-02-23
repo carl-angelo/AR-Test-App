@@ -9,7 +9,7 @@ export interface LoginResponseInterface {
 }
 
 export interface RefreshTokenRequestInterface {
-  username: string;
+  username?: string;
   refreshToken: string;
   appId: string;
   appSecret: string;

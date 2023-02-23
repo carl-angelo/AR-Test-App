@@ -1,9 +1,18 @@
+.loading-overlay {
+  @apply absolute top-0 left-0 w-screen h-screen flex justify-center;
+  background-color: rgba(51, 65, 85, 90%);
+
+  .loading {
+    @apply font-bold flex items-center text-white;
+  }
+}
+
 .login-container {
-  @apply w-full flex justify-center h-screen items-center;
+  @apply w-full flex justify-center h-screen items-center text-slate-600;
 }
 
 .login-wrapper {
-  @apply p-3 border-[1px] h-[300px] border-black justify-center;
+  @apply px-4 py-6 min-w-[300px] border-[1px] border-slate-400 justify-center bg-slate-200;
 }
 
 .fieldset {
@@ -11,7 +20,23 @@
 
   input {
     &[type="text"], &[type="password"] {
-      @apply border-[1px] border-black w-full;
+      @apply border-[1px] border-slate-400 w-full;
+    }
+  }
+}
+
+.header {
+  @apply h-[50px] w-full bg-slate-200 flex items-center justify-between px-4;
+}
+
+.button {
+  @apply px-6 py-1;
+
+  &.button-primary {
+    @apply bg-sky-600 text-white;
+
+    &:hover {
+      @apply bg-sky-800;
     }
   }
 }

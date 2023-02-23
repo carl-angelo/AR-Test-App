@@ -1,24 +1,21 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { useLogoutUserMutation } from '../services/logout';
+import React, { useEffect } from 'react';
+import Loading from '../components/Loading';
+import { useGetPeopleListQuery } from '../services/people';
 
 const Home: React.FC<EmptyObject> = () => {
 
-  const [logoutApi] = useLogoutUserMutation();
-  const auth = useAuth();
-  const navigate = useNavigate();
+  const { data: peopleList, isLoading } = useGetPeopleListQuery({});
 
-  const handleLogout = () => {
-    logoutApi({ refreshToken: auth.refreshToken || auth.userToken }).then(() => {
-      navigate('/login');
-    });
-  };
+  useEffect(() => {
+    console.log('!!!', peopleList);
+  }, [peopleList])
 
-  return <div>
-    Home
-    <button onClick={handleLogout}>logout</button>
-  </div>;
+  return (
+    <>
+      <Loading loading={isLoading} />
+      test
+    </>
+  );
 };
 
 export default Home;

@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseApiQuery } from './baseApiQuery';
-import { authTokenKey, authUser } from '../constants';
+import { authAccess, authTokenKey, authUser } from '../constants';
 import { setLogoutUser } from '../slices/auth';
 import { LogoutRequestInterface } from '../interfaces/logout-interface';
 
@@ -25,6 +25,7 @@ export const logoutApi = createApi({
           console.log('user logout', data);
           localStorage.removeItem(authTokenKey);
           localStorage.removeItem(authUser)
+          localStorage.removeItem(authAccess);
           dispatch(setLogoutUser());
         } catch(e) {
           console.error('ERROR LOGIN', e);

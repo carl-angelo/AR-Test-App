@@ -1,9 +1,22 @@
 import { useSelector } from "react-redux"
 import { GlobalStateInterface } from "../interfaces/global-state-interface"
 import { authAccess, authTokenKey, authUser } from '../constants';
+import { LoggedInUserDetail } from "../interfaces/login-interface";
 
-export const useAuth = () => {
-  const logginState = useSelector((state: GlobalStateInterface) => state && state.auth);
+interface StateInterface {
+  auth: LoggedInUserDetail | null;
+}
+
+interface AuthHook {
+  userToken: string | null;
+  user: string | null;
+  isLoggedIn: string | null;
+  userAccess: string | null;
+  auth: LoggedInUserDetail | null;
+}
+
+export const useAuth = (): AuthHook => {
+  const auth = useSelector((state: GlobalStateInterface): StateInterface['auth'] => state?.auth);
   const userToken = localStorage.getItem(authTokenKey)
   const user = localStorage.getItem(authUser);
   const userAccess = localStorage.getItem(authAccess);
@@ -15,7 +28,7 @@ export const useAuth = () => {
     user,
     isLoggedIn,
     userAccess,
-    ...logginState
+    auth
   };
 };
 

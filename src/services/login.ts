@@ -31,12 +31,10 @@ export const loginApi = createApi({
       },
     }),
     fetchToken: builder.mutation<LoggedInUserDetail, FetchTokenRequestInterface>({
-      query: ({ ...props }) => ({
+      query: (props) => ({
         url: '/users/fetch-token',
         method: 'POST',
-        body: JSON.stringify({
-          ...props
-        }),
+        body: JSON.stringify(props),
         provideTags: ['FETCH_TOKEN']
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
@@ -54,12 +52,10 @@ export const loginApi = createApi({
       
     }),
     refreshToken: builder.mutation<LoggedInUserDetail, RefreshTokenRequestInterface>({
-      query: ({ ...props }) => ({
+      query: (props) => ({
         url: '/users/refresh-token',
         method: 'POST',
-        body: JSON.stringify({
-          ...props
-        }),
+        body: JSON.stringify(props),
         provideTags: ['REFETCH_TOKEN']
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
@@ -71,6 +67,7 @@ export const loginApi = createApi({
           dispatch(setAuth(data));
         } catch(e) {
           console.error('ERROR LOGIN', e);
+          if (e)
           dispatch(loginApi.util.invalidateTags(['REFETCH_TOKEN']));
         }
       },
