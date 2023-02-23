@@ -26,7 +26,11 @@
 }
 
 .header {
-  @apply h-[50px] w-full bg-slate-200 flex items-center justify-between px-4;
+  @apply h-[50px] w-full bg-slate-200 px-4;
+
+  .container {
+    @apply w-full flex items-center justify-between;
+  }
 }
 
 .button {
@@ -37,6 +41,30 @@
 
     &:hover {
       @apply bg-sky-800;
+    }
+  }
+}
+
+.container {
+  @apply px-4 py-2 w-full flex m-auto;
+
+  .data-wrapper {
+    @apply w-full overflow-auto;
+
+    table {
+      @apply table-auto w-full border border-solid border-slate-400 bg-slate-100;
+
+      tr {
+        @apply border border-solid border-slate-400;
+
+        th {
+          @apply text-left px-2 py-1 text-sm bg-slate-300;
+        }
+
+        td {
+          @apply px-2 py-1 text-sm;
+        }
+      }
     }
   }
 }

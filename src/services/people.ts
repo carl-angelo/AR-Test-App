@@ -14,7 +14,7 @@ export const hubApi = createApi({
         url: `${HUB_ENDPOINT}/people`,
         params: {
           entryStatus: "ACTIVE",
-          pageSize: 5
+          pageSize: 100
         },
         provideTags: ['PEOPLE_LIST']
       }),

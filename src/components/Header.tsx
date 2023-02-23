@@ -51,8 +51,10 @@ const Header: React.FC<EmptyObject> = () => {
     <>
       <Loading loading={isLoading} />
       <div className="header">
-        <div className="logo">Home</div>
-        <button className="button button-primary" onClick={handleLogout}>logout</button>
+        <div className="container">
+          <div className="logo">Home</div>
+          <button className="button button-primary" onClick={handleLogout}>LOGOUT</button>
+        </div>
       </div>
     </>
   );
