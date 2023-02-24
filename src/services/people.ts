@@ -7,7 +7,7 @@ const HUB_ENDPOINT = '/hub/api/v1';
 export const hubApi = createApi({
   reducerPath: 'peopleApi',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['PEOPLE_LIST',],
+  tagTypes: ['PEOPLE_LIST', 'ADDRESS_LIST', 'CONTACT_LIST'],
   endpoints: (builder) => ({
     getPeopleList: builder.query<GetPeopleResponse, EmptyObject>({
       query: () => ({
@@ -23,17 +23,63 @@ export const hubApi = createApi({
       },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await queryFulfilled;
-          console.log(data);
+          // const { data } = await queryFulfilled;
+          // console.log(data);
         } catch(e) {
-          console.error('ERROR LOGIN', e);
+          console.error('ERROR PEOPLE LIST', e);
           dispatch(hubApi.util.invalidateTags(['PEOPLE_LIST']));
         }
       },
-    })
+    }),
+    getAddresses: builder.query<GetPeopleResponse, EmptyObject>({
+      query: () => ({
+        url: `${HUB_ENDPOINT}/addresses`,
+        params: {
+          entryStatus: "ACTIVE",
+          pageSize: 100
+        },
+        provideTags: ['ADDRESS_LIST']
+      }),
+      extraOptions: {
+        auth: true
+      },
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          // const { data } = await queryFulfilled;
+          // console.log(data);
+        } catch(e) {
+          console.error('ERROR ADDRESS LIST', e);
+          dispatch(hubApi.util.invalidateTags(['ADDRESS_LIST']));
+        }
+      },
+    }),
+    getContactDetails: builder.query<GetPeopleResponse, EmptyObject>({
+      query: () => ({
+        url: `${HUB_ENDPOINT}/contact-details`,
+        params: {
+          entryStatus: "ACTIVE",
+          pageSize: 100
+        },
+        provideTags: ['CONTACT_LIST']
+      }),
+      extraOptions: {
+        auth: true
+      },
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          // const { data } = await queryFulfilled;
+          // console.log(data);
+        } catch(e) {
+          console.error('ERROR CONTACT DETAILS', e);
+          dispatch(hubApi.util.invalidateTags(['CONTACT_LIST']));
+        }
+      },
+    }),
   })
 });
 
 export const {
   useGetPeopleListQuery,
+  useGetAddressesQuery,
+  useGetContactDetailsQuery
 } = hubApi;
