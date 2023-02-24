@@ -3,6 +3,7 @@ import { loginApi } from '../services/login';
 import { logoutApi } from '../services/logout';
 import { hubApi } from '../services/people';
 import { authReducer } from '../slices/auth';
+import { errorReducer } from '../slices/error';
 
 export const getStore = (initialState = {}) => {
   const listenerMiddleware = createListenerMiddleware();
@@ -15,6 +16,7 @@ export const getStore = (initialState = {}) => {
     preloadedState: initialState,
     reducer: {
       auth: authReducer,
+      error: errorReducer,
       [loginApi.reducerPath]: loginApi.reducer,
       [logoutApi.reducerPath]: logoutApi.reducer,
       [hubApi.reducerPath]: hubApi.reducer,

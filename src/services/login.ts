@@ -24,7 +24,7 @@ export const loginApi = createApi({
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           // try...
-        } catch(e) {
+        } catch(e: any) {
           console.error('ERROR LOGIN', e);
           dispatch(loginApi.util.invalidateTags(['LOGIN_USER']));
         }

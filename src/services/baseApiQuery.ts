@@ -4,7 +4,7 @@ import { getAccessToken } from '../hooks/useAuth';
 import { authAccess, authTokenKey, authUser } from '../constants';
 import { setAuth, setLogoutUser } from '../slices/auth';
 import { LoggedInUserDetail } from '../interfaces/login-interface';
-import { useNavigate } from 'react-router-dom';
+import { setError } from '../slices/error';
 
 export const baseApiQuery: BaseQueryFn<
   string | FetchArgs,
@@ -23,7 +23,11 @@ export const baseApiQuery: BaseQueryFn<
       return headers;
     }
   });
-  return rawBaseQuery(args, api, extraOptions);
+  const result = await rawBaseQuery(args, api, extraOptions);
+  if (result.error) {
+    api.dispatch(setError({ code: result.error.status as number, data: result.error.data }));
+  }
+  return result;
 };
 
 export const baseQueryWithReauth: BaseQueryFn<

@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
 import { useFetchTokenMutation, useLoginUserMutation } from '../services/login';
 import { appId, appSecret } from '../constants';
 import Loading from '../components/Loading';
@@ -9,21 +8,28 @@ const Login: React.FC<EmptyObject> = () => {
 
   const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [loginUser, { data: loginResponse, isSuccess: isLoginApiSuccess, isLoading: isLoginMutationLoading }] = useLoginUserMutation();
-  const [fetchToken, { data: fetchTokenResponse, isSuccess: isFetchTokenSuccess, isLoading: isFetchTokenLoading }] = useFetchTokenMutation();
+  const [loginUser, {
+    data: loginResponse,
+    isSuccess: isLoginApiSuccess,
+    isLoading: isLoginMutationLoading
+  }] = useLoginUserMutation();
+  const [fetchToken, {
+    data: fetchTokenResponse,
+    isSuccess: isFetchTokenSuccess,
+    isLoading: isFetchTokenLoading,
+  }] = useFetchTokenMutation();
   const navigate = useNavigate();
   const isLoading = isLoginMutationLoading || isFetchTokenLoading;
   
 
-  const handleLogin = () => {
+  const handleLogin = useCallback(() => {
     loginUser({
       username, password
-    })
-  };
+    });
+  }, [username, password]);
 
   const handleFetchToken = useCallback(() => {
     if (isLoginApiSuccess && loginResponse?.authCode && appId && appSecret) {
-      console.log('handleFetchToken');
       fetchToken({
         authCode: loginResponse.authCode,
         appId,
@@ -57,7 +63,7 @@ const Login: React.FC<EmptyObject> = () => {
             <input type="password" name="password" id="password" onChange={(event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
           </div>
           <div className="fieldset">
-            <button type="submit" name="submit" className="button button-primary" onClick={handleLogin}> Login </button>
+            <button type="submit" name="submit" className="button button-primary" onClick={() => handleLogin()}> Login </button>
           </div>
         </div>
       </div>

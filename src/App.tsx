@@ -5,6 +5,7 @@ import { BrowserRouter, useRoutes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './core/store';
 import Header from './components/Header';
+import Error from './components/Error';
 
 const Login = loadable(() => import('./pages/Login'));
 const Home = loadable(() => import('./pages/Home'));
@@ -28,6 +29,7 @@ const App: React.FC<EmptyObject> = () => {
     <BrowserRouter>
       <Header />
       <AppRoute />
+      <Error />
     </BrowserRouter> 
    </Provider>
   );

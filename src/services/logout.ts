@@ -3,6 +3,7 @@ import { baseApiQuery } from './baseApiQuery';
 import { authAccess, authTokenKey, authUser } from '../constants';
 import { setLogoutUser } from '../slices/auth';
 import { LogoutRequestInterface } from '../interfaces/logout-interface';
+import { loginApi } from './login';
 
 export const logoutApi = createApi({
   reducerPath: 'logoutApi',
@@ -27,6 +28,7 @@ export const logoutApi = createApi({
           localStorage.removeItem(authUser)
           localStorage.removeItem(authAccess);
           dispatch(setLogoutUser());
+          loginApi.util.invalidateTags(['LOGIN_USER', 'FETCH_TOKEN', 'REFETCH_TOKEN']);
         } catch(e) {
           console.error('ERROR LOGIN', e);
         }

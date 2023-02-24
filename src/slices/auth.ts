@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { initialState } from '../constants/initialState';
-import { GlobalStateInterface } from "../interfaces/global-state-interface";
+import { ContentGlobalInterface, GlobalStateInterface } from "../interfaces/global-state-interface";
 import { LoggedInUserDetail } from "../interfaces/login-interface";
+
+const initialState: ContentGlobalInterface<LoggedInUserDetail> = {
+  content: null
+};
 
 export const AuthSlice = createSlice({
   name: 'AuthUserSlice',
   initialState,
   reducers: {
-    setAuth: (state: GlobalStateInterface, action: PayloadAction<LoggedInUserDetail>) => {
-      state.auth = { ...action.payload }
+    setAuth: (state, action: PayloadAction<LoggedInUserDetail>) => {
+      state.content = { ...action.payload }
     },
-    setLogoutUser: (state: GlobalStateInterface) => {
-      state.auth = null;
+    setLogoutUser: (state) => {
+      state.content = null;
     },
   }
 });

@@ -1,5 +1,5 @@
 .loading-overlay {
-  @apply absolute top-0 left-0 w-screen h-screen flex justify-center;
+  @apply absolute top-0 left-0 w-screen h-screen flex justify-center z-50;
   background-color: rgba(51, 65, 85, 90%);
 
   .loading {
@@ -66,5 +66,22 @@
         }
       }
     }
+  }
+}
+
+.error-container {
+  @apply absolute left-0 z-30 flex w-full justify-center bottom-10;
+
+  .error-wrapper {
+    @apply px-6 py-2 bg-red-500 text-white border-solid border
+      border-red-50 text-sm flex gap-[100px] items-center;
+
+      div {
+        @apply flex flex-grow;
+
+        span {
+          @apply font-bold mr-3;
+        }
+      }
   }
 }
