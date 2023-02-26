@@ -21,9 +21,8 @@ const Header: React.FC<EmptyObject> = () => {
     });
   };
 
-  const handleTokenRefresh = useCallback(() => {
-    if (auth && user && userToken && appId && appSecret) {
-      console.log('handleTokenRefresh');
+  const handleTokenRefresh = () => {
+    if (user && userToken && appId && appSecret) {
       refreshToken({
         username: user,
         refreshToken: userToken,
@@ -31,7 +30,7 @@ const Header: React.FC<EmptyObject> = () => {
         appSecret
       });
     }
-  }, [user, userToken, appId, appSecret]);
+  };
 
   useEffect(() => {
     handleTokenRefresh();

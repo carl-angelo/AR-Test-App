@@ -1,4 +1,4 @@
-import { Educational, Gender, HousingStatus, MaritalStatus, ResidencyStatus, UserGroup } from "../enum";
+import { AddressTypes, ContactTypes, Educational, Gender, HousingStatus, MaritalStatus, OwnerType, ResidencyStatus, UserGroup } from "../enum";
 
 export interface People {
   entryId: string;
@@ -35,8 +35,38 @@ export interface People {
   xplanId: number;
 }
 
-export interface GetPeopleResponse {
-  items: People[];
+export interface ApiResponse<T> {
+  items: T[];
   lastEvaluatedKey: string;
 }
 
+export interface Addresses {
+  entryId: string;
+  entryStatus: string;
+  createDate: string;
+  updateDate: string;
+  createdBy: string;
+  updatedBy: string;
+  ownerId: string;
+  ownerType: OwnerType;
+  addressType: AddressTypes;
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  postcode: string;
+  country: string;
+}
+
+export interface ContactDetails {
+  entryId: string;
+  entryStatus: string;
+  createDate: string;
+  updateDate: string;
+  createdBy: string;
+  updatedBy: string;
+  ownerId: string;
+  ownerType: OwnerType;
+  contactType: ContactTypes;
+  detail: string;
+}

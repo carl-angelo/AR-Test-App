@@ -30,7 +30,7 @@ export const logoutApi = createApi({
           dispatch(setLogoutUser());
           loginApi.util.invalidateTags(['LOGIN_USER', 'FETCH_TOKEN', 'REFETCH_TOKEN']);
         } catch(e) {
-          console.error('ERROR LOGIN', e);
+          console.error('ERROR LOGOUT', e);
         }
       },
       

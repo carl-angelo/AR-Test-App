@@ -40,3 +40,25 @@ export enum UserGroup {
   Advice = 'Advice Practice',
   Professional = 'Professional Services'
 }
+
+export enum AddressTypes {
+  Residential = 'Residential',
+  Business = 'Business',
+  Postal = 'Postal',
+  Registered = 'Registered'
+}
+
+export enum OwnerType {
+  People = 'People',
+  Entities = 'Entities'
+}
+
+export enum ContactTypes {
+  Home_Phone = 'Home Phone',
+  Work_Phone = 'Work Phone',
+  Mobile = 'Mobile Phone',
+  Other_People = 'Other People',
+  Home_Email = 'Home Email',
+  Work_Email = 'Work Email',
+  Other_Email = 'Other Email'
+}

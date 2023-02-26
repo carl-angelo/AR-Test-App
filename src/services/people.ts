@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQueryWithReauth } from './baseApiQuery';
-import { GetPeopleResponse, People } from '../interfaces/people-interface';
+import { Addresses, ApiResponse, ContactDetails, People } from '../interfaces/people-interface';
 
 const HUB_ENDPOINT = '/hub/api/v1';
 
@@ -9,7 +9,7 @@ export const hubApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['PEOPLE_LIST', 'ADDRESS_LIST', 'CONTACT_LIST'],
   endpoints: (builder) => ({
-    getPeopleList: builder.query<GetPeopleResponse, EmptyObject>({
+    getPeopleList: builder.query<ApiResponse<People>, EmptyObject>({
       query: () => ({
         url: `${HUB_ENDPOINT}/people`,
         params: {
@@ -31,7 +31,7 @@ export const hubApi = createApi({
         }
       },
     }),
-    getAddresses: builder.query<GetPeopleResponse, EmptyObject>({
+    getAddresses: builder.query<ApiResponse<Addresses>, EmptyObject>({
       query: () => ({
         url: `${HUB_ENDPOINT}/addresses`,
         params: {
@@ -53,7 +53,7 @@ export const hubApi = createApi({
         }
       },
     }),
-    getContactDetails: builder.query<GetPeopleResponse, EmptyObject>({
+    getContactDetails: builder.query<ApiResponse<ContactDetails>, EmptyObject>({
       query: () => ({
         url: `${HUB_ENDPOINT}/contact-details`,
         params: {

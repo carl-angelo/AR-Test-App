@@ -50,6 +50,9 @@ if (result.error && result.error.status === 401) {
     result = await baseApiQuery(args, api, extraOptions);
   } else {
     api.dispatch(setLogoutUser());
+    localStorage.removeItem(authTokenKey);
+    localStorage.removeItem(authUser);
+    localStorage.removeItem(authAccess);
     window.location.href = '/login';
   }
 }
