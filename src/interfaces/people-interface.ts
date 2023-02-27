@@ -85,3 +85,8 @@ export interface TableData {
   home_address: string;
   office_address: string;
 }
+
+export interface DeletePeopleInterface {
+  entryId: string;
+  practiceId: string;
+}

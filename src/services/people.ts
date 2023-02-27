@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import { baseQueryWithReauth } from './baseApiQuery';
-import { Addresses, ApiResponse, ContactDetails, People } from '../interfaces/people-interface';
+import { Addresses, ApiResponse, ContactDetails, DeletePeopleInterface, People } from '../interfaces/people-interface';
 
 const HUB_ENDPOINT = '/hub/api/v1';
 
@@ -75,11 +75,62 @@ export const hubApi = createApi({
         }
       },
     }),
+    deletePeople: builder.mutation<unknown, DeletePeopleInterface>({
+      query: (props) => ({
+        url: `${HUB_ENDPOINT}/people/${props.entryId}`,
+        method: 'DELETE',
+        body: JSON.stringify(props)
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          // do next...
+        } catch(e) {
+          console.error('ERROR DELETE PEOPLE', e);
+        }
+      },
+      
+    }),
+    deleteContact: builder.mutation<unknown, { entryId: string }>({
+      query: (props) => ({
+        url: `${HUB_ENDPOINT}/contact-details/${props.entryId}`,
+        method: 'DELETE',
+        body: JSON.stringify(props)
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          // do next...
+        } catch(e) {
+          console.error('ERROR DELETE CONTACT', e);
+        }
+      },
+      
+    }),
+    deleteAddress: builder.mutation<unknown, { entryId: string }>({
+      query: (props) => ({
+        url: `${HUB_ENDPOINT}/addresses/${props.entryId}`,
+        method: 'DELETE',
+        body: JSON.stringify(props)
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          // do next...
+        } catch(e) {
+          console.error('ERROR DELETE ADDRESS', e);
+        }
+      },
+      
+    }),
   })
 });
 
 export const {
   useGetPeopleListQuery,
   useGetAddressesQuery,
-  useGetContactDetailsQuery
+  useGetContactDetailsQuery,
+  useDeletePeopleMutation,
+  useDeleteContactMutation,
+  useDeleteAddressMutation
 } = hubApi;
