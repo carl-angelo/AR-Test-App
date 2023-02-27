@@ -59,6 +59,10 @@
 
         th {
           @apply text-left px-2 py-1 text-sm bg-slate-300;
+
+          &:nth-child(2):hover {
+            cursor: pointer;
+          }
         }
 
         td {

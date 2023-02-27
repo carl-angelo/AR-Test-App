@@ -62,3 +62,9 @@ export enum ContactTypes {
   Work_Email = 'Work Email',
   Other_Email = 'Other Email'
 }
+
+export enum Sort {
+  ASC = 'asc',
+  DESC = 'desc',
+  DEFAULT = ''
+}

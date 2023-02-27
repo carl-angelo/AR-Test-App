@@ -70,3 +70,18 @@ export interface ContactDetails {
   contactType: ContactTypes;
   detail: string;
 }
+
+export interface TableData {
+  entryId: string;
+  firstName: string;
+  lastName: string;
+  preferredName: string;
+  dateOfBirth: string;
+  gender: string;
+  maritalStatus: string;
+  mobile: string;
+  home_email: string;
+  office_email: string;
+  home_address: string;
+  office_address: string;
+}
