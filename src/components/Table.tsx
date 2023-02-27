@@ -31,14 +31,12 @@ const Table: React.FC<Props> = ({
     if (page === MAX_PAGE) return;
     setPage(page + 1);
     setStart(start + PAGE_SIZE);
-    console.log('nextPage');
   };
 
   const prevPage = () => {
     if (page === 1) return;
     setPage(page - 1);
     setStart(start - PAGE_SIZE);
-    console.log('prevPage');
   };
 
   const renderTableHeader = () => {
