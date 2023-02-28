@@ -7,7 +7,7 @@ import { store } from './core/store';
 import Header from './components/Header';
 import Error from './components/Error';
 
-const Login = loadable(() => import('./pages/Login'));
+const Login = loadable(() => import('./pages/Login/Login'));
 const Home = loadable(() => import('./pages/Home'));
 // const ErrorPage = loadable(() => import('./pages/Error'));
 
