@@ -53,9 +53,9 @@ export const hubApi = createApi({
         }
       },
     }),
-    getContactDetails: builder.query<ApiResponse<ContactDetails>, EmptyObject>({
-      query: () => ({
-        url: `${HUB_ENDPOINT}/contact-details`,
+    getContactDetails: builder.query<ApiResponse<ContactDetails>, any>({
+      query: (props) => ({
+        url: `${HUB_ENDPOINT}/contact-details?${props}`,
         params: {
           entryStatus: "ACTIVE",
           pageSize: 100
@@ -79,8 +79,11 @@ export const hubApi = createApi({
       query: (props) => ({
         url: `${HUB_ENDPOINT}/people/${props.entryId}`,
         method: 'DELETE',
-        body: JSON.stringify(props)
+        params: props
       }),
+      extraOptions: {
+        auth: true
+      },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -95,8 +98,11 @@ export const hubApi = createApi({
       query: (props) => ({
         url: `${HUB_ENDPOINT}/contact-details/${props.entryId}`,
         method: 'DELETE',
-        body: JSON.stringify(props)
+        params: props
       }),
+      extraOptions: {
+        auth: true
+      },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -111,8 +117,11 @@ export const hubApi = createApi({
       query: (props) => ({
         url: `${HUB_ENDPOINT}/addresses/${props.entryId}`,
         method: 'DELETE',
-        body: JSON.stringify(props)
+        params: props
       }),
+      extraOptions: {
+        auth: true
+      },
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;

@@ -10,6 +10,7 @@ interface Props {
   selected: string[];
   setFilter: (filter: string) => void;
   setSelected: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  deleteData: () => void;
 }
 
 const Table: React.FC<Props> = ({
@@ -18,7 +19,8 @@ const Table: React.FC<Props> = ({
   selected,
   data,
   setFilter,
-  setSelected
+  setSelected,
+  deleteData
 }) => {
 
   const [sort, setSort] = useState(Sort.DEFAULT);
@@ -112,7 +114,7 @@ const Table: React.FC<Props> = ({
             setFilter(e.target.value);
         }, 500)} />
       </div>
-      {!!selected?.length && <button type="button" className="button bg-red-500 text-white mb-2">Delete</button>}
+      {!!selected?.length && <button type="button" className="button bg-red-500 text-white mb-2" onClick={deleteData}>Delete</button>}
       <table>
         <thead>
           <tr>

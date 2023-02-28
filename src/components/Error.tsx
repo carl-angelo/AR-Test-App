@@ -19,7 +19,7 @@ const Error: React.FC<EmptyObject> = () => {
           <span>{error.error?.code}</span> { error?.error.data.message }
         </div>
         <div className="error-close">
-          <button onClick={() => dispatch(clearError())}>X</button>
+          <button type="button" onClick={() => dispatch(clearError())}>X</button>
         </div>
       </div>
     </div>
