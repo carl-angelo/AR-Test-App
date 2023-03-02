@@ -140,7 +140,7 @@ const Home: React.FC<EmptyObject> = () => {
   }, [peopleList?.items]);
 
   return (
-    <div className="container">
+    <div className="container" data-testid="home-container">
       <Loading loading={isPeopleListLoading} />
       <Table
         headerList={headerList}

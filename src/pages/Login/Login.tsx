@@ -53,7 +53,7 @@ const Login: React.FC<EmptyObject> = () => {
       <Loading loading={isLoading} />
       <div className="login-container">
         <div className="login-wrapper">
-          <h2> Login </h2>
+          <h2>Login</h2>
           <div className="fieldset flex-col">
             <label htmlFor="username"> Username </label>
             <input type="text" name="username" id="username" data-testid="login-username" onChange={(event: ChangeEvent<HTMLInputElement>) => setUserName(event.target.value)} />

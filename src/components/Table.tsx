@@ -65,7 +65,7 @@ const Table: React.FC<Props> = ({
 
   const renderData = useCallback(() => {
     if (!data.length) {
-      return <tr><td colSpan={headerList.length}> No data found </td></tr>;
+      return <tr><td colSpan={headerList.length}>No data found</td></tr>;
     }
 
     let newData = [...data]
@@ -83,10 +83,11 @@ const Table: React.FC<Props> = ({
         <tr key={people.entryId}>
           { fieldNames && fieldNames.map(fieldName => (
             fieldName === 'entryId' ?
-              (<td key={fieldName}> <input
-                type="checkbox" value={people.entryId}
-                aria-label={`people-select-${people.entryId}`}
-                onChange={setSelected}
+              (<td key={fieldName}>
+                <input
+                    type="checkbox" value={people.entryId}
+                    aria-label={`people-select-${people.entryId}`}
+                    onChange={setSelected}
                     />
               </td>) :
               <td key={fieldName}> {people[fieldName as keyof TableData]} </td>
@@ -98,23 +99,23 @@ const Table: React.FC<Props> = ({
   const renderPagination = useCallback(() => {
     return (
       <div className="bg-slate-100 p-2 flex gap-3 justify-end items-center">
-        <button type="button" className="button bg-slate-300" onClick={prevPage}> &lt; </button>
-        <span className="text-xs"> Page: {page} of {MAX_PAGE} </span>
-        <button type="button" className="button bg-slate-300" onClick={nextPage}> &gt; </button>
+        <button type="button"  data-testid="table-prev-page-btn" className="button bg-slate-300" onClick={prevPage}> &lt; </button>
+        <span className="text-xs" data-testid="table-page-info">Page: {page} of {MAX_PAGE}</span>
+        <button type="button" data-testid="table-next-page-btn" className="button bg-slate-300" onClick={nextPage}> &gt; </button>
       </div>
     );
   }, [page, data]);
 
   return (
-    <div className="data-wrapper">
-      <div className="filter text-sm">
+    <div className="data-wrapper" data-testid="table-wrapper">
+      <div className="filter text-sm" data-testid="table-filter">
         <label htmlFor="filter"> Filter by name: </label>
         <input type="text" className="border-[1px] border-slate-400 mb-2 px-2" name="filter" placeholder="First, Last, Preferred"
           onChange={debounce((e) => {
             setFilter(e.target.value);
         }, 500)} />
       </div>
-      {!!selected?.length && <button type="button" className="button bg-red-500 text-white mb-2" onClick={deleteData}>Delete</button>}
+      {!!selected?.length && <button type="button" data-testid="table-delete-btn" className="button bg-red-500 text-white mb-2" onClick={deleteData}>Delete</button>}
       <table>
         <thead>
           <tr>

@@ -25,7 +25,7 @@ module.exports = {
   ignorePatterns: ["node_modules/"],
   settings: {
     react: {
-      version: "latest", // "detect" automatically picks the version you have installed.
+      version: "detect", // "detect" automatically picks the version you have installed.
     },
   },
 }

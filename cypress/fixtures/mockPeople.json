@@ -1,0 +1,119 @@
+{
+  "items": [
+      {
+          "entryId": "7df7fde0-2252-4eb8-ae70-d3060a4100000",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T12:54:53.700628",
+          "updateDate": "2023-02-23T12:54:53.700628",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "Carl",
+          "lastName": "Sare",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "John",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+      },
+      {
+          "entryId": "e29250d6-435d-4967-adc1-b8ff2b900001",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T13:28:45.278985",
+          "updateDate": "2023-02-23T13:28:45.278985",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "John",
+          "lastName": "Doe",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "John",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+      },
+      {
+          "entryId": "e29250d6-435d-4967-adc1-b8ff2b900002",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T13:28:45.278985",
+          "updateDate": "2023-02-23T13:28:45.278985",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "Mark",
+          "lastName": "Test",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "Mark",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+    },
+    {
+          "entryId": "e29250d6-435d-4967-adc1-b8ff2b900003",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T13:28:45.278985",
+          "updateDate": "2023-02-23T13:28:45.278985",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "Kalye",
+          "lastName": "Irving",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "Kyrie",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+    },
+    {
+          "entryId": "e29250d6-435d-4967-adc1-b8ff2b900004",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T13:28:45.278985",
+          "updateDate": "2023-02-23T13:28:45.278985",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "Johnny",
+          "lastName": "Sims",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "John",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+    },
+    {
+          "entryId": "e29250d6-435d-4967-adc1-b8ff2b900005",
+          "entryStatus": "ACTIVE",
+          "createDate": "2023-02-23T13:28:45.278985",
+          "updateDate": "2023-02-23T13:28:45.278985",
+          "createdBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "updatedBy": "7df7fde0-2252-4eb8-ae70-d3060a406d1d",
+          "firstName": "Stephen",
+          "lastName": "Sorry",
+          "userGroup": "Advice Practice",
+          "userRoles": [
+              "primary_client"
+          ],
+          "practiceId": "9d31cbd2-f551-4a2a-aa89-242f5c6de01a",
+          "preferredName": "Steph",
+          "dateOfBirth": "1990-01-01",
+          "maritalStatus": "Single",
+          "gender": "Male"
+    }
+  ],
+  "lastEvaluatedKey": "eyJoYXNoS2V5IjogeyJTIjogIlBlb3BsZSN0ZXN0In0sICJyYW5nZUtleSI6IHsiUyI6ICJ2MCM2YWVhMTRkZS04NDVmLTQ2NzYtYjFkNi0xYjQ3NzRjYWRkYWUjdGVzdCJ9fQ=="
+}

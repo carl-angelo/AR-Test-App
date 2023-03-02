@@ -49,10 +49,10 @@ const Header: React.FC<EmptyObject> = () => {
   return (
     <>
       <Loading loading={isLoading} />
-      <div className="header">
+      <div className="header" data-testid="header">
         <div className="container">
-          <div className="logo">Home</div>
-          <button className="button button-primary" onClick={handleLogout}>LOGOUT</button>
+          <div className="logo">Advice Revolution</div>
+          <button type="button" data-testid="logout-btn" className="button button-primary" onClick={handleLogout}>LOGOUT</button>
         </div>
       </div>
     </>

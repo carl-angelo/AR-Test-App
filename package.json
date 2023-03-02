@@ -31,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src/**/*.js src/**/*.jsx"
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "e2e": "cypress run --headed --config-file \"./cypress/config/cypress-base.json\" --no-exit"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +56,7 @@
     "@types/loadable__component": "^5.13.4",
     "babel-eslint": "^10.1.0",
     "babel-eslint-parser": "^7.13.10",
+    "cypress": "9.7.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
