@@ -106,16 +106,8 @@ const Table: React.FC<Props> = ({
     );
   }, [page, data]);
 
-  return (
-    <div className="data-wrapper" data-testid="table-wrapper">
-      <div className="filter text-sm" data-testid="table-filter">
-        <label htmlFor="filter"> Filter by name: </label>
-        <input type="text" className="border-[1px] border-slate-400 mb-2 px-2" name="filter" placeholder="First, Last, Preferred"
-          onChange={debounce((e) => {
-            setFilter(e.target.value);
-        }, 500)} />
-      </div>
-      {!!selected?.length && <button type="button" data-testid="table-delete-btn" className="button bg-red-500 text-white mb-2" onClick={deleteData}>Delete</button>}
+  const renderTable = () => {
+    return (
       <table>
         <thead>
           <tr>
@@ -126,6 +118,22 @@ const Table: React.FC<Props> = ({
           {renderData()}
         </tbody>
       </table>
+    );
+  }
+
+  return (
+    <div className="data-wrapper" data-testid="table-wrapper">
+      <div className="filter text-sm" data-testid="table-filter">
+        <label htmlFor="filter"> Filter by name: </label>
+        <input type="text" className="border-[1px] border-slate-400 mb-2 px-2" name="filter" placeholder="First, Last, Preferred"
+          onChange={debounce((e) => {
+            setFilter(e.target.value);
+        }, 500)} />
+      </div>
+      {!!selected?.length && <button type="button" data-testid="table-delete-btn" className="button bg-red-500 text-white mb-2" onClick={deleteData}>Delete</button>}
+      <div className="table-container overflow-auto">
+        {renderTable()}
+      </div>
       {renderPagination()}
     </div>
   );

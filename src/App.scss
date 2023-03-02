@@ -20,7 +20,7 @@
 
   input {
     &[type="text"], &[type="password"] {
-      @apply border-[1px] border-slate-400 w-full;
+      @apply border-[1px] border-slate-400 w-full px-2 py-1 text-sm;
     }
   }
 }
