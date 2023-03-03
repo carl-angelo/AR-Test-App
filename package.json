@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@loadable/component": "^5.15.3",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
@@ -32,7 +31,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.ts src/**/*.tsx",
-    "e2e": "cypress run --headed --config-file \"./cypress/config/cypress-base.json\""
+    "e2e": "cypress run --headed --config-file \"./cypress/config/cypress-base.json\"",
+    "prettier": "prettier --check \"src/**/*.tsx\""
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +53,6 @@
     ]
   },
   "devDependencies": {
-    "@types/loadable__component": "^5.13.4",
     "babel-eslint": "^10.1.0",
     "babel-eslint-parser": "^7.13.10",
     "cypress": "9.7.0",

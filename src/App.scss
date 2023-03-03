@@ -1,6 +1,6 @@
 .loading-overlay {
   @apply absolute top-0 left-0 w-screen h-screen flex justify-center z-50;
-  background-color: rgba(51, 65, 85, 90%);
+  background-color: rgb(51, 65, 85);
 
   .loading {
     @apply font-bold flex items-center text-white;
@@ -8,19 +8,34 @@
 }
 
 .login-container {
-  @apply w-full flex justify-center h-screen items-center text-slate-600;
+  @apply w-full flex flex-col gap-2 justify-center h-screen items-center text-slate-600 max-w-[330px] m-auto;
 }
 
 .login-wrapper {
-  @apply px-4 py-6 min-w-[300px] border-[1px] border-slate-400 justify-center bg-slate-200;
+  @apply px-4 py-6 w-full border-[1px] border-slate-400 justify-center bg-slate-200;
 }
 
 .fieldset {
   @apply flex py-3;
 
   input {
-    &[type="text"], &[type="password"] {
+    &[type="text"]:not(#password) {
       @apply border-[1px] border-slate-400 w-full px-2 py-1 text-sm;
+    }
+  }
+  .password-input-wrapper {
+    @apply flex bg-white border-[1px] border-slate-400 w-full;
+
+    input {
+      @apply flex flex-grow px-2 py-1 text-sm;
+
+      &:focus, &:active {
+        @apply outline-none;
+      }
+    }
+
+    svg {
+      @apply fill-slate-500 mr-2;
     }
   }
 }
@@ -31,16 +46,28 @@
   .container {
     @apply w-full flex items-center justify-between;
   }
+
+  .logo {
+    @apply font-bold;
+  }
 }
 
 .button {
   @apply px-6 py-1;
+
+  &.icon-button {
+    @apply px-1;
+  }
 
   &.button-primary {
     @apply bg-sky-600 text-white;
 
     &:hover {
       @apply bg-sky-800;
+    }
+
+    &:disabled {
+      @apply bg-slate-300 cursor-not-allowed;
     }
   }
 }
@@ -58,7 +85,11 @@
         @apply border border-solid border-slate-400;
 
         th {
-          @apply text-left px-2 py-1 text-sm bg-slate-300;
+          @apply text-left px-2 py-3 text-sm bg-slate-300 whitespace-nowrap;
+
+          svg {
+            @apply inline;
+          }
 
           &:nth-child(2):hover {
             cursor: pointer;
@@ -74,7 +105,14 @@
 }
 
 .error-container {
-  @apply absolute left-0 z-30 flex w-full justify-center bottom-10;
+
+  &:not(.error-inline) {
+    @apply absolute left-0 z-30 flex w-full justify-center bottom-10;
+  }
+
+  &.error-inline {
+    @apply w-full;
+  }
 
   .error-wrapper {
     @apply px-6 py-2 bg-red-500 text-white border-solid border
@@ -87,5 +125,13 @@
           @apply font-bold mr-3;
         }
       }
+  }
+}
+
+.filter {
+  @apply p-2;
+
+  input {
+    @apply px-2 py-1;
   }
 }

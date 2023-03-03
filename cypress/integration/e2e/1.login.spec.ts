@@ -10,9 +10,6 @@ describe('Login Page', () => {
 
   it('should redirect to Login if no auth yet', () => {
     cy.visit('http://localhost:3000');
-
-    cy.checkLoading();
-
     cy.get('.login-container').should('have.length', 1);
     cy.get('h2').should('have.text', 'Login');
   });
@@ -22,8 +19,6 @@ describe('Login Page', () => {
     cy.get('[data-testid="login-password"]').type('test');
 
     cy.get('[data-testid="login-button"]').click();
-
-    cy.checkLoading();
 
     cy.get('.error-container').should('have.length', 1);
   });

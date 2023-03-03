@@ -14,7 +14,6 @@ describe('Home Page', () => {
   it('should be redirect to Home when user try to back to login', () => {
     cy.checkHome();
     cy.visit('http://localhost:3000/login');
-    cy.checkLoading();
     
     cy.wait('@refreshToken').then(() => {
       cy.checkHome();
@@ -88,10 +87,10 @@ describe('Home Page', () => {
       cy.get('tbody tr').should('have.length.gt', 1);
 
       cy.get('thead tr th:nth-child(2)').click();
-      cy.get('thead tr th:nth-child(2)').contains(/asc/);
+      cy.get('[data-testid="asc"]').should('have.length', 1);
 
       cy.get('thead tr th:nth-child(2)').click();
-      cy.get('thead tr th:nth-child(2)').contains(/desc/);
+      cy.get('[data-testid="desc"]').should('have.length', 1);
 
       cy.get('tbody tr:first-child td:nth-child(2)').contains(/Mark/);
     });
